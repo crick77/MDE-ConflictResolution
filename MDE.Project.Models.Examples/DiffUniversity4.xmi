@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ASCII"?>
+<compare:Comparison xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:compare="http://www.eclipse.org/emf/compare" threeWay="true">
+  <matchedResources leftURI="platform:/resource/MDE.Project.Models.Examples/university/example4/University_L.xmi"/>
+  <matchedResources rightURI="platform:/resource/MDE.Project.Models.Examples/university/example4/University_R.xmi"/>
+  <matchedResources originURI="platform:/resource/MDE.Project.Models.Examples/university/example4/University_O.xmi"/>
+  <matches>
+    <submatches>
+      <submatches>
+        <left href="platform:/resource/MDE.Project.Models.Examples/university/example4/University_L.xmi#//@Courses.0/@Student.0"/>
+      </submatches>
+      <submatches>
+        <right href="platform:/resource/MDE.Project.Models.Examples/university/example4/University_R.xmi#//@Courses.0/@Professor"/>
+      </submatches>
+      <differences xsi:type="compare:ReferenceChange" source="RIGHT">
+        <reference href="platform:/resource/it.univaq.disim.uncertainty.uuniversity/metamodel/UUniversity.ecore#//Courses/Professor"/>
+        <value href="platform:/resource/MDE.Project.Models.Examples/university/example4/University_R.xmi#//@Courses.0/@Professor"/>
+      </differences>
+      <differences xsi:type="compare:ReferenceChange">
+        <reference href="platform:/resource/it.univaq.disim.uncertainty.uuniversity/metamodel/UUniversity.ecore#//Courses/Student"/>
+        <value href="platform:/resource/MDE.Project.Models.Examples/university/example4/University_L.xmi#//@Courses.0/@Student.0"/>
+      </differences>
+      <left href="platform:/resource/MDE.Project.Models.Examples/university/example4/University_L.xmi#//@Courses.0"/>
+      <right href="platform:/resource/MDE.Project.Models.Examples/university/example4/University_R.xmi#//@Courses.0"/>
+      <origin href="platform:/resource/MDE.Project.Models.Examples/university/example4/University_O.xmi#//@Courses.0"/>
+    </submatches>
+    <left href="platform:/resource/MDE.Project.Models.Examples/university/example4/University_L.xmi#/"/>
+    <right href="platform:/resource/MDE.Project.Models.Examples/university/example4/University_R.xmi#/"/>
+    <origin href="platform:/resource/MDE.Project.Models.Examples/university/example4/University_O.xmi#/"/>
+  </matches>
+</compare:Comparison>

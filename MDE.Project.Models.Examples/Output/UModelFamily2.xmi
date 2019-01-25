@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Families:FamilyRegistry xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Families="http://it.univaq.disim/uncertainty.ufamily" xmlns:uncertainty="uncertainty">
+  <families xsi:type="Families:Family" lastName="Smith" address="st St. Andrea">
+    <sons xsi:type="uncertainty:uMember">
+      <uleft firstName="John" age="49"/>
+      <uright firstName="John" age="51"/>
+    </sons>
+    <mother xsi:type="uncertainty:uMember">
+      <uleft firstName="Maggie" age="36"/>
+      <uright firstName="Anne" age="35"/>
+    </mother>
+  </families>
+</Families:FamilyRegistry>

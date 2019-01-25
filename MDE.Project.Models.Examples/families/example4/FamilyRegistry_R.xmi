@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Families:FamilyRegistry
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:Families="http://it.univaq.disim/uncertainty.ufamily"
+    xsi:schemaLocation="http://it.univaq.disim/uncertainty.ufamily ../../../it.univaq.disim.uncertainty.ufamilies/metamodel/UFamily.ecore">
+  <families
+      xsi:type="Families:Family"
+      lastName="Smith"
+      address="st St. Andrea">
+    <daughters
+        xsi:type="Families:Member"
+        firstName="Anne"
+        age="25"/>
+  </families>
+</Families:FamilyRegistry>

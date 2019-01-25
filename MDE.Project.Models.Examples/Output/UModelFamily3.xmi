@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Families:FamilyRegistry xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Families="http://it.univaq.disim/uncertainty.ufamily" xmlns:uncertainty="uncertainty">
+  <families xsi:type="Families:Family" lastName="Hill" address="st St. Diego">
+    <mother xsi:type="uncertainty:uMember">
+      <uleft firstName="Maggie" age="36"/>
+      <uright firstName="Maggie" age="35"/>
+    </mother>
+    <father xsi:type="uncertainty:uMember">
+      <uleft firstName="Terence" age="55"/>
+      <uright firstName="Terence" age="40"/>
+    </father>
+  </families>
+  <families xsi:type="Families:Family" lastName="Smith" address="st St. Andrea">
+    <sons xsi:type="uncertainty:uMember">
+      <uleft firstName="John" age="49"/>
+      <uright firstName="John" age="51"/>
+    </sons>
+    <daughters xsi:type="uncertainty:uMember">
+      <uleft firstName="Alex" age="46"/>
+      <uright firstName="Alex" age="50"/>
+    </daughters>
+    <father xsi:type="uncertainty:uMember">
+      <uleft firstName="Pino" age="69"/>
+      <uright firstName="Pino" age="71"/>
+    </father>
+  </families>
+</Families:FamilyRegistry>

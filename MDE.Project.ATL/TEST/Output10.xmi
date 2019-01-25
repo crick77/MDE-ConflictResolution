@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Families:FamilyRegistry xmi:version="2.0" 
+	xmlns:xmi="http://www.omg.org/XMI" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:Families="http://it.univaq.disim/families" 
+	xsi:schemaLocation="http://it.univaq.disim/families ../../it.univaq.disim.uncertainty.ufamilies/metamodel/UFamily.ecore" 
+	xmi:id="_t91OQBNWEemx2c-e1qMuRQ">
+  
+  <families xmi:id="_t91OQRNWEemx2c-e1qMuRQ" lastName="PM" address="St. Andrea">
+    <children xmi:id="_TJ41MBNXEemx2c-e1qMuRQ" firstName="k" age="5"/>
+    <mother xmi:id="_-dEu4BfrEem6Fb9RyjdSxw" firstName="j" age="40" guardian="_-dEu4hfrEem6Fb9RyjdSxw"/>
+    <father xmi:id="_-dEu4RfrEem6Fb9RyjdSxw" firstName="d" age="45"/>
+  </families>
+  <families xmi:id="_-dEu4hfrEem6Fb9RyjdSxw" lastName="NP">
+    <children xmi:id="_-dEu4xfrEem6Fb9RyjdSxw" firstName="g" age="20"/>
+    <mother xmi:id="_-dEu5BfrEem6Fb9RyjdSxw" firstName="s" age="45"/>
+    <father xmi:id="_-dEu5RfrEem6Fb9RyjdSxw" firstName="A" age="50" guardian="_t91OQRNWEemx2c-e1qMuRQ"/>
+  </families>
+</Families:FamilyRegistry>

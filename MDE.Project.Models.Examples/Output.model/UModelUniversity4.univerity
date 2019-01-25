@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Univerity:University xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Univerity="http://it.univaq.disim/university">
+  <Courses xsi:type="Univerity:Courses" Name="Model Driven" CFU="6">
+    <Professor xsi:type="Univerity:Person" Name="Alfonso Pierantonio" Email="alfonso.pierantonio@univa.it"/>
+    <Student xsi:type="Univerity:Person" Name="Iovenitti Riccardo" Email="riccardo.iovenitti@gmail.com"/>
+  </Courses>
+</Univerity:University>

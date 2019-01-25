@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ASCII"?>
+<compare:Comparison xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:compare="http://www.eclipse.org/emf/compare" threeWay="true">
+  <matchedResources leftURI="platform:/resource/MDE.Project.Models.Examples/university/example1/University_L.xmi"/>
+  <matchedResources rightURI="platform:/resource/MDE.Project.Models.Examples/university/example1/University_R.xmi"/>
+  <matchedResources originURI="platform:/resource/MDE.Project.Models.Examples/university/example1/University_O.xmi"/>
+  <matches>
+    <submatches>
+      <submatches>
+        <left href="platform:/resource/MDE.Project.Models.Examples/university/example1/University_L.xmi#//@Courses.0/@Professor"/>
+        <right href="platform:/resource/MDE.Project.Models.Examples/university/example1/University_R.xmi#//@Courses.0/@Professor"/>
+      </submatches>
+      <submatches>
+        <differences xsi:type="compare:AttributeChange" kind="CHANGE" conflict="//@conflicts.0">
+          <attribute href="platform:/resource/it.univaq.disim.uncertainty.uuniversity/metamodel/UUniversity.ecore#//Person/Email"/>
+        </differences>
+        <differences xsi:type="compare:AttributeChange" kind="CHANGE" source="RIGHT" conflict="//@conflicts.0">
+          <attribute href="platform:/resource/it.univaq.disim.uncertainty.uuniversity/metamodel/UUniversity.ecore#//Person/Email"/>
+        </differences>
+        <left href="platform:/resource/MDE.Project.Models.Examples/university/example1/University_L.xmi#//@Courses.0/@Student.0"/>
+        <right href="platform:/resource/MDE.Project.Models.Examples/university/example1/University_R.xmi#//@Courses.0/@Student.0"/>
+        <origin href="platform:/resource/MDE.Project.Models.Examples/university/example1/University_O.xmi#//@Courses.0/@Student.0"/>
+      </submatches>
+      <differences xsi:type="compare:ReferenceChange" conflict="//@conflicts.1">
+        <reference href="platform:/resource/it.univaq.disim.uncertainty.uuniversity/metamodel/UUniversity.ecore#//Courses/Professor"/>
+        <value href="platform:/resource/MDE.Project.Models.Examples/university/example1/University_L.xmi#//@Courses.0/@Professor"/>
+      </differences>
+      <differences xsi:type="compare:ReferenceChange" source="RIGHT" conflict="//@conflicts.1">
+        <reference href="platform:/resource/it.univaq.disim.uncertainty.uuniversity/metamodel/UUniversity.ecore#//Courses/Professor"/>
+        <value href="platform:/resource/MDE.Project.Models.Examples/university/example1/University_R.xmi#//@Courses.0/@Professor"/>
+      </differences>
+      <left href="platform:/resource/MDE.Project.Models.Examples/university/example1/University_L.xmi#//@Courses.0"/>
+      <right href="platform:/resource/MDE.Project.Models.Examples/university/example1/University_R.xmi#//@Courses.0"/>
+      <origin href="platform:/resource/MDE.Project.Models.Examples/university/example1/University_O.xmi#//@Courses.0"/>
+    </submatches>
+    <left href="platform:/resource/MDE.Project.Models.Examples/university/example1/University_L.xmi#/"/>
+    <right href="platform:/resource/MDE.Project.Models.Examples/university/example1/University_R.xmi#/"/>
+    <origin href="platform:/resource/MDE.Project.Models.Examples/university/example1/University_O.xmi#/"/>
+  </matches>
+  <conflicts differences="//@matches.0/@submatches.0/@submatches.1/@differences.0 //@matches.0/@submatches.0/@submatches.1/@differences.1"/>
+  <conflicts kind="PSEUDO" differences="//@matches.0/@submatches.0/@differences.0 //@matches.0/@submatches.0/@differences.1"/>
+</compare:Comparison>

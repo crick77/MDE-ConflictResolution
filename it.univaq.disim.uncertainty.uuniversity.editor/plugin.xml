@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated UUniversity -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="Univerity.presentation.UniverityModelWizardID"
+            name="%_UI_UniverityModelWizard_label"
+            class="Univerity.presentation.UniverityModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/UniverityModelFile.gif">
+         <description>%_UI_UniverityModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated UUniversity -->
+      <editor
+            id="Univerity.presentation.UniverityEditorID"
+            name="%_UI_UniverityEditor_label"
+            icon="icons/full/obj16/UniverityModelFile.gif"
+            extensions="univerity"
+            class="Univerity.presentation.UniverityEditor"
+            contributorClass="Univerity.presentation.UniverityActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated UUniversity -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="Univerity.uncertainty.presentation.UncertaintyModelWizardID"
+            name="%_UI_UncertaintyModelWizard_label"
+            class="Univerity.uncertainty.presentation.UncertaintyModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/UncertaintyModelFile.gif">
+         <description>%_UI_UncertaintyModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated UUniversity -->
+      <editor
+            id="Univerity.uncertainty.presentation.UncertaintyEditorID"
+            name="%_UI_UncertaintyEditor_label"
+            icon="icons/full/obj16/UncertaintyModelFile.gif"
+            extensions="uncertainty"
+            class="Univerity.uncertainty.presentation.UncertaintyEditor"
+            contributorClass="Univerity.uncertainty.presentation.UncertaintyActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

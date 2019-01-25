@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ASCII"?>
+<compare:Comparison xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:compare="http://www.eclipse.org/emf/compare" threeWay="true">
+  <matchedResources leftURI="platform:/resource/MDE.Project.Models.Examples/families/example1/FamilyRegistry_L.xmi"/>
+  <matchedResources rightURI="platform:/resource/MDE.Project.Models.Examples/families/example1/FamilyRegistry_R.xmi"/>
+  <matchedResources originURI="platform:/resource/MDE.Project.Models.Examples/families/example1/FamilyRegistry_O.xmi"/>
+  <matches>
+    <submatches>
+      <submatches>
+        <differences xsi:type="compare:AttributeChange" kind="CHANGE" conflict="//@conflicts.0">
+          <attribute href="platform:/resource/it.univaq.disim.uncertainty.ufamilies/metamodel/UFamily.ecore#//Member/age"/>
+        </differences>
+        <differences xsi:type="compare:AttributeChange" kind="CHANGE" source="RIGHT" conflict="//@conflicts.0">
+          <attribute href="platform:/resource/it.univaq.disim.uncertainty.ufamilies/metamodel/UFamily.ecore#//Member/age"/>
+        </differences>
+        <left href="platform:/resource/MDE.Project.Models.Examples/families/example1/FamilyRegistry_L.xmi#//@families.0/@sons.0"/>
+        <right href="platform:/resource/MDE.Project.Models.Examples/families/example1/FamilyRegistry_R.xmi#//@families.0/@sons.0"/>
+        <origin href="platform:/resource/MDE.Project.Models.Examples/families/example1/FamilyRegistry_O.xmi#//@families.0/@sons.0"/>
+      </submatches>
+      <submatches>
+        <left href="platform:/resource/MDE.Project.Models.Examples/families/example1/FamilyRegistry_L.xmi#//@families.0/@mother"/>
+      </submatches>
+      <differences xsi:type="compare:ReferenceChange">
+        <reference href="platform:/resource/it.univaq.disim.uncertainty.ufamilies/metamodel/UFamily.ecore#//Family/mother"/>
+        <value href="platform:/resource/MDE.Project.Models.Examples/families/example1/FamilyRegistry_L.xmi#//@families.0/@mother"/>
+      </differences>
+      <left href="platform:/resource/MDE.Project.Models.Examples/families/example1/FamilyRegistry_L.xmi#//@families.0"/>
+      <right href="platform:/resource/MDE.Project.Models.Examples/families/example1/FamilyRegistry_R.xmi#//@families.0"/>
+      <origin href="platform:/resource/MDE.Project.Models.Examples/families/example1/FamilyRegistry_O.xmi#//@families.0"/>
+    </submatches>
+    <left href="platform:/resource/MDE.Project.Models.Examples/families/example1/FamilyRegistry_L.xmi#/"/>
+    <right href="platform:/resource/MDE.Project.Models.Examples/families/example1/FamilyRegistry_R.xmi#/"/>
+    <origin href="platform:/resource/MDE.Project.Models.Examples/families/example1/FamilyRegistry_O.xmi#/"/>
+  </matches>
+  <conflicts differences="//@matches.0/@submatches.0/@submatches.0/@differences.0 //@matches.0/@submatches.0/@submatches.0/@differences.1"/>
+</compare:Comparison>

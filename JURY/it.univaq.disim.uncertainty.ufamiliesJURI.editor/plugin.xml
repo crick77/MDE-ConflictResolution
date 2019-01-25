@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated UFamilies -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="Families.presentation.FamiliesModelWizardID"
+            name="%_UI_FamiliesModelWizard_label"
+            class="Families.presentation.FamiliesModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/FamiliesModelFile.gif">
+         <description>%_UI_FamiliesModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated UFamilies -->
+      <editor
+            id="Families.presentation.FamiliesEditorID"
+            name="%_UI_FamiliesEditor_label"
+            icon="icons/full/obj16/FamiliesModelFile.gif"
+            extensions="families"
+            class="Families.presentation.FamiliesEditor"
+            contributorClass="Families.presentation.FamiliesActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated UFamilies -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="Families.uncertainty.presentation.UncertaintyModelWizardID"
+            name="%_UI_UncertaintyModelWizard_label"
+            class="Families.uncertainty.presentation.UncertaintyModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/UncertaintyModelFile.gif">
+         <description>%_UI_UncertaintyModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated UFamilies -->
+      <editor
+            id="Families.uncertainty.presentation.UncertaintyEditorID"
+            name="%_UI_UncertaintyEditor_label"
+            icon="icons/full/obj16/UncertaintyModelFile.gif"
+            extensions="uncertainty"
+            class="Families.uncertainty.presentation.UncertaintyEditor"
+            contributorClass="Families.uncertainty.presentation.UncertaintyActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

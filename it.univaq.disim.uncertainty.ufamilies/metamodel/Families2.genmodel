@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/it.univaq.disim.uncertainty.ufamilies/src" modelPluginID="it.univaq.disim.uncertainty.ufamilies"
+    modelName="Families2" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>Families2.ecore</foreignModel>
+  <genPackages prefix="Families" disposableProviderFactory="true" ecorePackage="Families2.ecore#/">
+    <genClasses ecoreClass="Families2.ecore#//Family">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Families2.ecore#//Family/lastName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Families2.ecore#//Family/sons"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Families2.ecore#//Family/daughters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Families2.ecore#//Family/mother"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Families2.ecore#//Family/father"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Families2.ecore#//Family/address"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Families2.ecore#//Family/links"/>
+    </genClasses>
+    <genClasses ecoreClass="Families2.ecore#//Member">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Families2.ecore#//Member/firstName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Families2.ecore#//Member/age"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Families2.ecore#//Member/relatives"/>
+    </genClasses>
+    <genClasses ecoreClass="Families2.ecore#//FamilyRegistry">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Families2.ecore#//FamilyRegistry/families"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

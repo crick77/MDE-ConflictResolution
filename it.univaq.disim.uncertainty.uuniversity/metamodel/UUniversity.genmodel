@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/it.univaq.disim.uncertainty.uuniversity/src" modelPluginID="it.univaq.disim.uncertainty.uuniversity"
+    modelName="UUniversity" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>UUniversity.ecore</foreignModel>
+  <genPackages prefix="Univerity" disposableProviderFactory="true" ecorePackage="UUniversity.ecore#/">
+    <genClasses ecoreClass="UUniversity.ecore#//Courses">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UUniversity.ecore#//Courses/Name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UUniversity.ecore#//Courses/CFU"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UUniversity.ecore#//Courses/Semester"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UUniversity.ecore#//Courses/links"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UUniversity.ecore#//Courses/Professor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UUniversity.ecore#//Courses/Student"/>
+    </genClasses>
+    <genClasses ecoreClass="UUniversity.ecore#//Person">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UUniversity.ecore#//Person/Name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UUniversity.ecore#//Person/Email"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UUniversity.ecore#//Person/relatives"/>
+    </genClasses>
+    <genClasses ecoreClass="UUniversity.ecore#//University">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UUniversity.ecore#//University/Courses"/>
+    </genClasses>
+    <nestedGenPackages prefix="Uncertainty" disposableProviderFactory="true" ecorePackage="UUniversity.ecore#//uncertainty">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="UUniversity.ecore#//uncertainty/OperatorType">
+        <genEnumLiterals ecoreEnumLiteral="UUniversity.ecore#//uncertainty/OperatorType/XOR"/>
+        <genEnumLiterals ecoreEnumLiteral="UUniversity.ecore#//uncertainty/OperatorType/AND"/>
+        <genEnumLiterals ecoreEnumLiteral="UUniversity.ecore#//uncertainty/OperatorType/OR"/>
+      </genEnums>
+      <genClasses image="false" ecoreClass="UUniversity.ecore#//uncertainty/ModelElement">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference UUniversity.ecore#//uncertainty/ModelElement/include"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference UUniversity.ecore#//uncertainty/ModelElement/exclude"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="UUniversity.ecore#//uncertainty/UData">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UUniversity.ecore#//uncertainty/UData/name"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UUniversity.ecore#//uncertainty/UData/utype"/>
+      </genClasses>
+      <genClasses ecoreClass="UUniversity.ecore#//uncertainty/uCourses">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UUniversity.ecore#//uncertainty/uCourses/uleft"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UUniversity.ecore#//uncertainty/uCourses/uright"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UUniversity.ecore#//uncertainty/uCourses/upoint"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="UUniversity.ecore#//uncertainty/aCourses"/>
+      <genClasses ecoreClass="UUniversity.ecore#//uncertainty/uPerson">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UUniversity.ecore#//uncertainty/uPerson/uleft"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UUniversity.ecore#//uncertainty/uPerson/uright"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UUniversity.ecore#//uncertainty/uPerson/upoint"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="UUniversity.ecore#//uncertainty/aPerson"/>
+      <genClasses ecoreClass="UUniversity.ecore#//uncertainty/uUniversity">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UUniversity.ecore#//uncertainty/uUniversity/uleft"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UUniversity.ecore#//uncertainty/uUniversity/uright"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UUniversity.ecore#//uncertainty/uUniversity/upoint"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="UUniversity.ecore#//uncertainty/aUniversity"/>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

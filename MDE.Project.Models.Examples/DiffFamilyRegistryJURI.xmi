@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="ASCII"?>
+<compare:Comparison xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:compare="http://www.eclipse.org/emf/compare" threeWay="true">
+  <matchedResources leftURI="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_L.xmi"/>
+  <matchedResources rightURI="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_R.xmi"/>
+  <matchedResources originURI="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_O.xmi"/>
+  <matches>
+    <submatches>
+      <submatches>
+        <left href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_L.xmi#//@families.1/@children.0"/>
+        <right href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_R.xmi#//@families.1/@mother"/>
+      </submatches>
+      <submatches>
+        <left href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_L.xmi#//@families.1/@mother"/>
+        <origin href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_O.xmi#//@families.1/@mother"/>
+      </submatches>
+      <submatches>
+        <differences xsi:type="compare:ReferenceChange" requiredBy="//@matches.0/@submatches.0/@differences.5" kind="CHANGE" source="RIGHT">
+          <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//Member/guardian"/>
+          <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_O.xmi#//@families.1"/>
+        </differences>
+        <left href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_L.xmi#//@families.1/@father"/>
+        <origin href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_O.xmi#//@families.1/@father"/>
+      </submatches>
+      <submatches>
+        <right href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_R.xmi#//@families.1/@children.0"/>
+        <origin href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_O.xmi#//@families.1/@children.0"/>
+      </submatches>
+      <submatches>
+        <differences xsi:type="compare:ReferenceChange" requires="//@matches.0/@submatches.0/@differences.4" kind="CHANGE" source="RIGHT">
+          <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//Member/guardian"/>
+          <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_R.xmi#//@families.1"/>
+        </differences>
+        <right href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_R.xmi#//@families.1/@father"/>
+      </submatches>
+      <differences xsi:type="compare:ReferenceChange" conflict="//@conflicts.0">
+        <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//Family/children"/>
+        <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_L.xmi#//@families.1/@children.0"/>
+      </differences>
+      <differences xsi:type="compare:ReferenceChange" kind="DELETE">
+        <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//Family/children"/>
+        <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_O.xmi#//@families.1/@children.0"/>
+      </differences>
+      <differences xsi:type="compare:ReferenceChange" requires="//@matches.0/@submatches.0/@differences.3" source="RIGHT" conflict="//@conflicts.0">
+        <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//Family/mother"/>
+        <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_R.xmi#//@families.1/@mother"/>
+      </differences>
+      <differences xsi:type="compare:ReferenceChange" requiredBy="//@matches.0/@submatches.0/@differences.2" kind="DELETE" source="RIGHT">
+        <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//Family/mother"/>
+        <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_O.xmi#//@families.1/@mother"/>
+      </differences>
+      <differences xsi:type="compare:ReferenceChange" requires="//@matches.0/@submatches.0/@differences.5" requiredBy="//@matches.0/@submatches.0/@submatches.4/@differences.0" source="RIGHT">
+        <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//Family/father"/>
+        <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_R.xmi#//@families.1/@father"/>
+      </differences>
+      <differences xsi:type="compare:ReferenceChange" requires="//@matches.0/@submatches.0/@submatches.2/@differences.0" requiredBy="//@matches.0/@submatches.0/@differences.4" kind="DELETE" source="RIGHT">
+        <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//Family/father"/>
+        <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_O.xmi#//@families.1/@father"/>
+      </differences>
+      <left href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_L.xmi#//@families.1"/>
+      <right href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_R.xmi#//@families.1"/>
+      <origin href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_O.xmi#//@families.1"/>
+    </submatches>
+    <submatches>
+      <submatches>
+        <differences xsi:type="compare:AttributeChange" kind="CHANGE" conflict="//@conflicts.3">
+          <attribute href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//Member/age"/>
+        </differences>
+        <left href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_L.xmi#//@families.0/@children.0"/>
+        <origin href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_O.xmi#//@families.0/@children.0"/>
+      </submatches>
+      <submatches>
+        <differences xsi:type="compare:ReferenceChange" requires="//@matches.0/@submatches.1/@differences.2" kind="CHANGE" conflict="//@conflicts.1">
+          <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//Member/guardian"/>
+          <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_L.xmi#//@families.0"/>
+        </differences>
+        <differences xsi:type="compare:ReferenceChange" requires="//@matches.0/@submatches.1/@differences.3" kind="CHANGE" source="RIGHT" conflict="//@conflicts.1">
+          <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//Member/guardian"/>
+          <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_R.xmi#//@families.0"/>
+        </differences>
+        <left href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_L.xmi#//@families.0/@mother"/>
+        <right href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_R.xmi#//@families.0/@mother"/>
+      </submatches>
+      <submatches>
+        <left href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_L.xmi#//@families.0/@father"/>
+        <right href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_R.xmi#//@families.0/@father"/>
+        <origin href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_O.xmi#//@families.0/@children.1"/>
+      </submatches>
+      <submatches>
+        <right href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_R.xmi#//@families.0/@children.0"/>
+      </submatches>
+      <submatches>
+        <differences xsi:type="compare:ReferenceChange" requiredBy="//@matches.0/@submatches.1/@differences.4" kind="CHANGE" conflict="//@conflicts.2">
+          <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//Member/guardian"/>
+          <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_O.xmi#//@families.0"/>
+        </differences>
+        <differences xsi:type="compare:ReferenceChange" requiredBy="//@matches.0/@submatches.1/@differences.5" kind="CHANGE" source="RIGHT" conflict="//@conflicts.2">
+          <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//Member/guardian"/>
+          <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_O.xmi#//@families.0"/>
+        </differences>
+        <origin href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_O.xmi#//@families.0/@mother"/>
+      </submatches>
+      <differences xsi:type="compare:ReferenceChange" source="RIGHT">
+        <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//Family/children"/>
+        <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_R.xmi#//@families.0/@children.0"/>
+      </differences>
+      <differences xsi:type="compare:ReferenceChange" kind="DELETE" source="RIGHT" conflict="//@conflicts.3">
+        <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//Family/children"/>
+        <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_O.xmi#//@families.0/@children.0"/>
+      </differences>
+      <differences xsi:type="compare:ReferenceChange" requires="//@matches.0/@submatches.1/@differences.4" requiredBy="//@matches.0/@submatches.1/@submatches.1/@differences.0" conflict="//@conflicts.4">
+        <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//Family/mother"/>
+        <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_L.xmi#//@families.0/@mother"/>
+      </differences>
+      <differences xsi:type="compare:ReferenceChange" requires="//@matches.0/@submatches.1/@differences.5" requiredBy="//@matches.0/@submatches.1/@submatches.1/@differences.1" source="RIGHT" conflict="//@conflicts.4">
+        <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//Family/mother"/>
+        <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_R.xmi#//@families.0/@mother"/>
+      </differences>
+      <differences xsi:type="compare:ReferenceChange" requires="//@matches.0/@submatches.1/@submatches.4/@differences.0" requiredBy="//@matches.0/@submatches.1/@differences.2" kind="DELETE" conflict="//@conflicts.5">
+        <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//Family/mother"/>
+        <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_O.xmi#//@families.0/@mother"/>
+      </differences>
+      <differences xsi:type="compare:ReferenceChange" requires="//@matches.0/@submatches.1/@submatches.4/@differences.1" requiredBy="//@matches.0/@submatches.1/@differences.3" kind="DELETE" source="RIGHT" conflict="//@conflicts.5">
+        <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//Family/mother"/>
+        <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_O.xmi#//@families.0/@mother"/>
+      </differences>
+      <differences xsi:type="compare:ReferenceChange" kind="MOVE" conflict="//@conflicts.6">
+        <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//Family/father"/>
+        <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_L.xmi#//@families.0/@father"/>
+      </differences>
+      <differences xsi:type="compare:ReferenceChange" kind="MOVE" source="RIGHT" conflict="//@conflicts.6">
+        <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//Family/father"/>
+        <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_R.xmi#//@families.0/@father"/>
+      </differences>
+      <left href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_L.xmi#//@families.0"/>
+      <right href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_R.xmi#//@families.0"/>
+      <origin href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_O.xmi#//@families.0"/>
+    </submatches>
+    <submatches>
+      <left href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_L.xmi#//@families.2"/>
+      <right href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_R.xmi#//@families.2"/>
+    </submatches>
+    <submatches>
+      <left href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_L.xmi#//@families.3"/>
+      <right href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_R.xmi#//@families.3"/>
+    </submatches>
+    <submatches>
+      <left href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_L.xmi#//@families.4"/>
+      <right href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_R.xmi#//@families.4"/>
+    </submatches>
+    <differences xsi:type="compare:ReferenceChange" conflict="//@conflicts.7">
+      <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//FamilyRegistry/families"/>
+      <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_L.xmi#//@families.2"/>
+    </differences>
+    <differences xsi:type="compare:ReferenceChange" conflict="//@conflicts.8">
+      <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//FamilyRegistry/families"/>
+      <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_L.xmi#//@families.3"/>
+    </differences>
+    <differences xsi:type="compare:ReferenceChange" conflict="//@conflicts.9">
+      <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//FamilyRegistry/families"/>
+      <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_L.xmi#//@families.4"/>
+    </differences>
+    <differences xsi:type="compare:ReferenceChange" source="RIGHT" conflict="//@conflicts.7">
+      <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//FamilyRegistry/families"/>
+      <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_R.xmi#//@families.2"/>
+    </differences>
+    <differences xsi:type="compare:ReferenceChange" source="RIGHT" conflict="//@conflicts.8">
+      <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//FamilyRegistry/families"/>
+      <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_R.xmi#//@families.3"/>
+    </differences>
+    <differences xsi:type="compare:ReferenceChange" source="RIGHT" conflict="//@conflicts.9">
+      <reference href="platform:/resource/MDE.Project.ATL.ModelU/TEST/UFamilies.ecore#//FamilyRegistry/families"/>
+      <value href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_R.xmi#//@families.4"/>
+    </differences>
+    <left href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_L.xmi#/"/>
+    <right href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_R.xmi#/"/>
+    <origin href="platform:/resource/MDE.Project.Models.Examples/families/juri_model/FamilyRegistry_O.xmi#/"/>
+  </matches>
+  <conflicts differences="//@matches.0/@submatches.0/@differences.0 //@matches.0/@submatches.0/@differences.2"/>
+  <conflicts kind="PSEUDO" differences="//@matches.0/@submatches.1/@submatches.1/@differences.0 //@matches.0/@submatches.1/@submatches.1/@differences.1"/>
+  <conflicts kind="PSEUDO" differences="//@matches.0/@submatches.1/@submatches.4/@differences.0 //@matches.0/@submatches.1/@submatches.4/@differences.1"/>
+  <conflicts differences="//@matches.0/@submatches.1/@differences.1 //@matches.0/@submatches.1/@submatches.0/@differences.0"/>
+  <conflicts kind="PSEUDO" differences="//@matches.0/@submatches.1/@differences.2 //@matches.0/@submatches.1/@differences.3"/>
+  <conflicts kind="PSEUDO" differences="//@matches.0/@submatches.1/@differences.4 //@matches.0/@submatches.1/@differences.5"/>
+  <conflicts kind="PSEUDO" differences="//@matches.0/@submatches.1/@differences.6 //@matches.0/@submatches.1/@differences.7"/>
+  <conflicts kind="PSEUDO" differences="//@matches.0/@differences.0 //@matches.0/@differences.3"/>
+  <conflicts kind="PSEUDO" differences="//@matches.0/@differences.1 //@matches.0/@differences.4"/>
+  <conflicts kind="PSEUDO" differences="//@matches.0/@differences.2 //@matches.0/@differences.5"/>
+</compare:Comparison>

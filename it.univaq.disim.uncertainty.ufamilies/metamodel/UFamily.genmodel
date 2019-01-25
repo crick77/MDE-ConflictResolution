@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/it.univaq.disim.uncertainty.ufamilies/src" modelPluginID="it.univaq.disim.uncertainty.ufamilies"
+    modelName="UFamily" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>UFamily.ecore</foreignModel>
+  <genPackages prefix="Families" disposableProviderFactory="true" ecorePackage="UFamily.ecore#/">
+    <genClasses ecoreClass="UFamily.ecore#//Family">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UFamily.ecore#//Family/lastName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UFamily.ecore#//Family/sons"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UFamily.ecore#//Family/daughters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UFamily.ecore#//Family/mother"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UFamily.ecore#//Family/father"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UFamily.ecore#//Family/address"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UFamily.ecore#//Family/links"/>
+    </genClasses>
+    <genClasses ecoreClass="UFamily.ecore#//Member">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UFamily.ecore#//Member/firstName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UFamily.ecore#//Member/age"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UFamily.ecore#//Member/relatives"/>
+    </genClasses>
+    <genClasses ecoreClass="UFamily.ecore#//FamilyRegistry">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UFamily.ecore#//FamilyRegistry/families"/>
+    </genClasses>
+    <nestedGenPackages prefix="Uncertainty" disposableProviderFactory="true" ecorePackage="UFamily.ecore#//uncertainty">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="UFamily.ecore#//uncertainty/OperatorType">
+        <genEnumLiterals ecoreEnumLiteral="UFamily.ecore#//uncertainty/OperatorType/XOR"/>
+        <genEnumLiterals ecoreEnumLiteral="UFamily.ecore#//uncertainty/OperatorType/AND"/>
+        <genEnumLiterals ecoreEnumLiteral="UFamily.ecore#//uncertainty/OperatorType/OR"/>
+      </genEnums>
+      <genClasses image="false" ecoreClass="UFamily.ecore#//uncertainty/ModelElement">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference UFamily.ecore#//uncertainty/ModelElement/include"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference UFamily.ecore#//uncertainty/ModelElement/exclude"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="UFamily.ecore#//uncertainty/UData">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UFamily.ecore#//uncertainty/UData/name"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UFamily.ecore#//uncertainty/UData/utype"/>
+      </genClasses>
+      <genClasses ecoreClass="UFamily.ecore#//uncertainty/uFamily">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UFamily.ecore#//uncertainty/uFamily/uleft"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UFamily.ecore#//uncertainty/uFamily/uright"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UFamily.ecore#//uncertainty/uFamily/upoint"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="UFamily.ecore#//uncertainty/aFamily"/>
+      <genClasses ecoreClass="UFamily.ecore#//uncertainty/uMember">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UFamily.ecore#//uncertainty/uMember/uleft"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UFamily.ecore#//uncertainty/uMember/uright"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UFamily.ecore#//uncertainty/uMember/upoint"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="UFamily.ecore#//uncertainty/aMember"/>
+      <genClasses ecoreClass="UFamily.ecore#//uncertainty/uFamilyRegistry">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UFamily.ecore#//uncertainty/uFamilyRegistry/uleft"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UFamily.ecore#//uncertainty/uFamilyRegistry/uright"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UFamily.ecore#//uncertainty/uFamilyRegistry/upoint"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="UFamily.ecore#//uncertainty/aFamilyRegistry"/>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

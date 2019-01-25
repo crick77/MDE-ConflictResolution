@@ -1,0 +1,360 @@
+[comment encoding = UTF-8 /]
+[module generate('http://www.eclipse.org/emf/2002/Ecore')]
+
+
+[template public generateElement(model : EPackage){ modelName: String = model.name; }]
+[comment @main/]
+[file ('HOT_'.concat(modelName).concat('.atl'), false, 'UTF-8')]
+-- @nsURI compareMM=http://www.eclipse.org/emf/compare
+
+module UModelTransformation;
+create OUT : U[modelName/]MM from IN : compareMM;
+
+
+-- ###################################################### HELPER ###################################################### --
+
+helper def: getReferenceChanges(m: compareMM!Match) : compareMM!ReferenceChanges =
+	m.differences ->select(e | e.oclIsTypeOf(compareMM!ReferenceChange));
+
+
+helper def : CheckMatch (x:compareMM!Match , 
+						 type:OclAny) : Boolean =
+	
+	x.origin.oclIsTypeOf(type) and not x.origin.oclIsUndefined() 
+							   and not x.left.oclIsUndefined()
+							   and not x.right.oclIsUndefined();
+
+
+helper def : CheckAttributeChange  (c:compareMM!AttributeChange , 
+								    type:OclAny) : Boolean =
+	
+	if (c.source = #LEFT) 
+		then c.refImmediateComposite().left.oclIsTypeOf(type) 
+		else c.refImmediateComposite().right.oclIsTypeOf(type) 
+	endif and not c.conflict.oclIsUndefined();
+
+
+helper def : CheckConflictingAttributes (c:compareMM!Conflict , 
+								 		 type:OclAny) : Boolean =
+	
+	c.differences.first().oclIsTypeOf(compareMM!AttributeChange) 
+	and c.kind = #REAL
+	and if (not c.differences.first().refImmediateComposite().left.oclIsUndefined())
+			then c.differences.first().refImmediateComposite().left.oclIsTypeOf(type)
+			else c.differences.first().refImmediateComposite().right.oclIsTypeOf(type)
+		endif;
+
+
+helper def : CheckConflictingMembers(cf: compareMM!Conflict,
+									 type:OclAny) : Boolean = 
+	
+	cf.differences.first().value.oclIsTypeOf(type) 
+	and cf.kind = #REAL
+	and if (not cf.differences.first().requires.isEmpty()) 
+			then if (not cf.differences.first().requires.first().conflict.oclIsUndefined())
+					then cf.differences.first().requires.first().conflict.kind = #REAL 
+					else true 
+				 endif 
+			else true 
+		endif;
+
+
+helper def : CheckReferenceChangeConflicting(rf: compareMM!ReferenceChange,
+									         type:OclAny) : Boolean = 
+	
+	rf.value.oclIsTypeOf(type) 
+	and if (not rf.conflict.oclIsUndefined()) 
+			then rf.conflict.kind = #REAL 
+			else false 
+		endif
+	and if (not rf.conflict.oclIsUndefined() and not rf.requires.isEmpty()) 
+			then if (not rf.requires.first().conflict.oclIsUndefined())
+					then rf.requires.first().conflict.kind = #REAL 
+					else true 
+				 endif
+			else true 
+		endif;
+
+
+helper def : CheckReferenceChangeAddMember (r: compareMM!ReferenceChange) : Boolean = 
+	
+	r.conflict.oclIsUndefined() and r.equivalence.oclIsUndefined() 
+								and r.reference.containment 
+			                    and r.kind = #ADD;
+	
+
+
+
+helper def : getAttribute (Match : compareMM!Match, 
+						    Attribute:String) : String =		
+								 	
+	if ( not (Match.differences ->select(e | e.oclIsTypeOf(compareMM!AttributeChange)) 
+								->select(e | e.attribute.name = Attribute)).isEmpty() )
+		then if ( (Match.differences ->select(e | e.oclIsTypeOf(compareMM!AttributeChange)) 
+									 ->select(e | e.attribute.name = Attribute)).first().source = #LEFT )
+				then Match.left.refGetValue(Attribute)
+				else Match.right.refGetValue(Attribute)
+			 endif
+		else Match.origin.refGetValue(Attribute) 
+	endif;
+
+
+helper def : getAttributeChange (c : compareMM!AttributeChange, 
+								 Attribute:String) : String =		
+								 	
+	if (c.source = #LEFT) 
+		then c.refImmediateComposite().left.refGetValue(Attribute) 
+		else c.refImmediateComposite().right.refGetValue(Attribute) 
+	endif;
+
+
+helper def : getMatchAttributePosition(Match:compareMM!Match, 
+	                           		   Attribute:String,
+							           Position: String) : OclAny =
+
+	thisModule.resolveTemp((Match.submatches ->select(e | Match.refGetValue(Position).refGetValue(Attribute) = e.refGetValue(Position)) 
+					  ->collect(sm | sm.differences)
+					  ->flatten()
+					  ->select(e | e.oclIsTypeOf(compareMM!AttributeChange))
+					  ->collect(e | e.conflict) )
+					  ->select(e | not e.oclIsUndefined()).first(),'ReferenceChange2X');	                           	
+
+
+helper def : getSingleMatch (Match:compareMM!Match, 
+	                         Attribute:String) : OclAny =
+	                           	
+	if (not thisModule.getMatchAttributePosition(Match,Attribute,'origin').oclIsUndefined() 
+		or not thisModule.getMatchAttributePosition(Match,Attribute,'left').oclIsUndefined()
+		or not thisModule.getMatchAttributePosition(Match,Attribute,'right').oclIsUndefined()) 
+		then if(not thisModule.getMatchAttributePosition(Match,Attribute,'origin').oclIsUndefined())
+				then thisModule.getMatchAttributePosition(Match,Attribute,'origin')
+				else if(not thisModule.getMatchAttributePosition(Match,Attribute,'left').oclIsUndefined())
+						then thisModule.getMatchAttributePosition(Match,Attribute,'left')
+						else thisModule.getMatchAttributePosition(Match,Attribute,'right')
+					 endif
+			 endif
+		else if (not thisModule.resolveTemp(thisModule.getReferenceChanges(Match) 
+					 ->select(e | e.reference.name = Attribute).first(), 'ReferenceChange2X').oclIsUndefined())
+					then thisModule.resolveTemp(thisModule.getReferenceChanges(Match)
+						 ->select(e | e.reference.name = Attribute).first(), 'ReferenceChange2X')
+					else if(not thisModule.resolveTemp((thisModule.getReferenceChanges(Match) 
+													    ->select(e | e.reference.name = Attribute)) 
+														->collect(e | e.conflict).first(), 'ConflictingX2uX').oclIsUndefined())
+						 	then thisModule.resolveTemp((thisModule.getReferenceChanges(Match) 
+						 			                     ->select(e | e.reference.name = Attribute)) 
+														 ->collect(e | e.conflict).first(), 'ConflictingX2uX')
+							else OclUndefined
+						 endif
+
+			 	 endif
+	endif;
+
+
+-- UFamiliesMM!"Families::Family"
+helper def : getRootCollectionMatch(Match: compareMM!Match, 
+					  		    Attribute: String) : Sequence(OclAny) =	
+		
+Match.submatches->select(e | Match.origin.refGetValue(Attribute).includes(e.origin))
+     .append(thisModule.getReferenceChanges(Match) ->select(e | e.reference.name = Attribute))
+     .append((Match.submatches->select(e | Match.origin.refGetValue(Attribute).includes(e.origin)) 
+     					    ->collect(sm | sm.differences)
+							->flatten()
+							->select(e | e.oclIsTypeOf(compareMM!AttributeChange))
+							->collect(e | e.conflict) )
+							->select(e | not e.oclIsUndefined()))
+     .append((thisModule.getReferenceChanges(Match) ->select(e | e.reference.name = Attribute)) 
+     											->collect(e | e.conflict));	
+
+
+-- UFamiliesMM!"Families::Family"
+helper def : getCollectionMatch(Match: compareMM!Match, 
+					  		    Attribute: String) : Sequence(OclAny) =	
+		
+thisModule.getReferenceChanges(Match) ->select(e | e.reference.name = Attribute)
+     	  .append((Match.submatches  ->select(e | Match.origin.refGetValue(Attribute).includes(e.origin)) 
+     					             ->collect(sm | sm.differences)
+							         ->flatten()
+							         ->select(e | e.oclIsTypeOf(compareMM!AttributeChange))
+							         ->collect(e | e.conflict) )
+							         ->select(e | not e.oclIsUndefined()))
+          .append((thisModule.getReferenceChanges(Match) ->select(e | e.reference.name = Attribute)) 
+     											         ->collect(e | e.conflict));							           	
+						  	
+
+
+helper def : getReferenceAttribute (m : compareMM!Match,
+					   				Attribute:String,
+					   				Reference:String,
+					   				type:OclAny) : Sequence(OclAny) =
+					   	
+				
+	if (not m.differences ->select(e | e.oclIsTypeOf(compareMM!ReferenceChange))
+					      ->select(e | not e.reference.containment) 
+						  ->select(e | e.reference.name = Attribute).first().oclIsUndefined()) 
+		then if (m.differences ->select(e | e.oclIsTypeOf(compareMM!ReferenceChange))
+				               ->select(e | not e.reference.containment) 
+							   ->select(e | e.reference.name = Attribute).first().source = #LEFT) 
+				then compareMM!Match.allInstances()->select(e | not e.origin.oclIsUndefined())
+				                                   ->select(e | e.origin.oclIsTypeOf(type))
+												   ->select(e | m.left.refGetValue(Attribute)
+												   ->collect(e | e.refGetValue(Reference)).includes(e.origin.refGetValue(Reference)))
+				else compareMM!Match.allInstances()->select(e | not e.origin.oclIsUndefined())
+				                                   ->select(e | e.origin.oclIsTypeOf(type))
+						                           ->select(e | m.right.refGetValue(Attribute)
+							                       ->collect(e | e.refGetValue(Reference)).includes(e.origin.refGetValue(Reference)))
+				endif
+		else compareMM!Match.allInstances()->select(e | not e.origin.oclIsUndefined())
+										   ->select(e | m.origin.refGetValue(Attribute).includes(e.origin)) 
+	endif;
+
+
+helper def : getReferenceChangeAttribute (r : compareMM!ReferenceChange,
+					   				      Attribute:String) : compareMM!ReferenceChange =
+					   					
+	if (not compareMM!ReferenceChange.allInstances()->select(e | e.reference.name = Attribute)
+												    ->select(e | e.requires.includes(r)).first().oclIsUndefined()) 
+		then (compareMM!ReferenceChange.allInstances()->select(e | e.reference.name = Attribute)
+													  ->select(e | e.requires.includes(r)).first().requires
+													  ->select(e | e.reference.eType = compareMM!ReferenceChange.allInstances()
+													  ->select(e | e.reference.name = Attribute)
+													  ->select(e | e.requires.includes(r)).first().reference.eType)) 
+		else OclUndefined 
+	endif;
+
+
+									
+-- #################################################################################################################### --
+
+-- ####################################################### RULE ####################################################### --
+
+
+[for (el : EClass | model.eContents(EClass))separator('\n')]
+[if (el.eInverse()->isEmpty() and not el.eAllSuperTypes->exists(e | not e.eInverse(EReference)->isEmpty()))]
+rule Match2[el.name/] {
+	from
+		Match: compareMM!Match ( thisModule.CheckMatch(Match, U[modelName/]MM![el.name/]) )
+
+	to
+		f: U[modelName/]MM![el.name/] (
+
+			[for (ref : EReference | el.eAllReferences)separator(',\n')] 
+			[if (ref.containment = true)]
+			[if (ref.upperBound = 1)]			
+			[ref.name/] 	<- thisModule.getSingleMatch(Match,'[ref.name/]')[else]
+			[ref.name/] 	<- thisModule.getRootCollectionMatch(Match,'[ref.name/]')[/if][/if][/for]
+				
+		)
+}
+[else]
+[if (el.eInverse(EReference)->exists(e | e.upperBound = 1 and e.containment) or el.eAllSuperTypes->exists(e | e.eInverse(EReference)->exists(e | e.upperBound = 1 and e.containment)))]
+
+
+rule Conflicting[el.name/]2u[el.name/] {
+	from
+		cf: compareMM!Conflict ( thisModule.CheckConflictingMembers(cf, U[modelName/]MM![el.name/]) )
+	to
+		ConflictingX2uX: U[modelName/]MM!u[el.name/] (
+			uleft <- (cf.differences ->select(e | e.source = #LEFT)),
+			uright <- (cf.differences ->select(e | e.source = #RIGHT))
+		)
+}
+
+
+
+rule ConflictingAttributes2u[el.name/] {
+	from
+		c: compareMM!Conflict ( thisModule.CheckConflictingAttributes(c,U[modelName/]MM![el.name/]) )
+	to
+		m: U[modelName/]MM!u[el.name/] (
+			uleft 		<- c.differences ->select(e | e.source = #LEFT),
+			uright 		<- c.differences ->select(e | e.source = #RIGHT)
+		)
+}
+
+
+rule AttributeChange2[el.name/] {
+	from 
+		c: compareMM!AttributeChange(thisModule.CheckAttributeChange(c,U[modelName/]MM![el.name/]))
+	to
+		m: U[modelName/]MM![el.name/] (
+
+			[if (not el.eAllAttributes->isEmpty())]
+			[for (attr : EAttribute | el.eAllAttributes)separator(',\n')]
+			[attr.name/] <- thisModule.getAttributeChange(c, '[attr.name/]')[/for][/if]
+			
+		)
+}
+
+
+rule ReferenceChangeAdd[el.name/]2[el.name/] {
+	from 
+		r: compareMM!ReferenceChange (thisModule.CheckReferenceChangeAddMember(r))
+	to
+		ReferenceChange2X: U[modelName/]MM![el.name/] (
+
+			[if (not el.eAllAttributes->isEmpty())]
+			[for (attr : EAttribute | el.eAllAttributes)separator(',\n')]
+			[attr.name/] <- r.value.[attr.name/][/for][if (not el.eAllReferences->isEmpty())],[/if]
+			[/if]	
+		
+			[for (ref : EReference | el.eAllReferences)separator(',\n')] 
+			[ref.name/] <- thisModule.getReferenceChangeAttribute(r,'[ref.name/]')
+			[/for]
+
+		)
+}
+
+
+
+rule ReferenceChangeConflicting2[el.name/] {
+	from 
+		r: compareMM!ReferenceChange ( thisModule.CheckReferenceChangeConflicting(r,U[modelName/]MM![el.name/]))
+	to
+		m: U[modelName/]MM![el.name/] (
+
+			[if (not el.eAllAttributes->isEmpty())]
+			[for (attr : EAttribute | el.eAllAttributes)separator(',\n')]
+			[attr.name/] <- r.value.[attr.name/][/for][if (not el.eAllReferences->isEmpty())],[/if]
+			[/if]	
+		
+			[for (ref : EReference | el.eAllReferences)separator(',\n')] 
+			[ref.name/] <- thisModule.getReferenceChangeAttribute(r,'[ref.name/]')
+			[/for]
+
+		)	
+	
+}
+
+
+[else]
+
+rule Match2[el.name/] {
+	from
+		Match: compareMM!Match ( thisModule.CheckMatch(Match, U[modelName/]MM![el.name/]) )
+	to
+		f: U[modelName/]MM![el.name/] (
+			
+			[if (not el.eAllAttributes->isEmpty())]
+			[for (attr : EAttribute | el.eAllAttributes)separator(',\n')]
+			[attr.name/] <- thisModule.getAttribute(Match, '[attr.name/]')[/for][/if][if not el.eAllReferences->isEmpty()],[/if]
+
+			[for (ref : EReference | el.eAllReferences)separator(',\n')] 
+			[if (ref.containment = true)]
+			[if (ref.upperBound = 1)]
+			[ref.name/] <- thisModule.getSingleMatch(Match,'[ref.name/]')[else]
+			[ref.name/] <- thisModule.getCollectionMatch(Match,'[ref.name/]')[/if][else] 
+			[if (ref.upperBound = 1)]
+			[ref.name/] <- if (not m.origin.[ref.name/].oclIsUndefined()) then compareMM!Match.allInstances()->select(e | not e.origin.oclIsUndefined())->select(e | e.origin.oclIsTypeOf(U[modelName/]MM![el.name/]))->select(e | e.origin.[el.eAllAttributes->first().name/] = m.origin.[ref.name/].first().[el.eAllAttributes->first().name/]) else OclUndefined endif[else]
+			[ref.name/] <- thisModule.getReferenceAttribute(Match, '[ref.name/]', '[el.eAllAttributes->first().name/]', U[modelName/]MM![el.name/])[/if][/if][/for]
+
+
+		)
+}
+
+[/if]
+
+[/if]
+
+[/for]
+[/file]
+[/template]

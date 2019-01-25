@@ -1,0 +1,430 @@
+-- @nsURI ecoreMMM=http://www.eclipse.org/emf/2002/Ecore
+
+-- This Transformation transforms a MM in UMM_v1.5 .
+-- It puts all new metaclasses (the metaclasses that don't belong to MM) in a new package called "uncertainty".
+
+-- The metaclasses in uncertainty package are organized in subpackages like the respective metaclasses are.
+
+-- Remember to allow inter-model references (menu Eclipse: Run Configurations)
+-- This feature allows to "link" the Ecore Types like EInt,EString,EObject 
+
+module GenerateUModel;
+create UMM : ecoreMMM from MM : ecoreMMM;
+
+helper def :inElements : Set(ecoreMMM!"ecore::EObject") = ecoreMMM!"ecore::EObject".allInstancesFrom('MM');
+helper def :eStringType: ecoreMMM!EDataType = ecoreMMM!EDataType.allInstancesFrom('ecoreMMM')->select(e | e.name = 'EString').first();
+helper def :eObjectType: ecoreMMM!EDataType = ecoreMMM!EObject; 
+helper def :ModelElementMetaclass : ecoreMMM!EClass = OclUndefined;
+
+helper def :ePackagePath : Sequence(ecoreMMM!EPackage) = OclUndefined;
+helper def :eClassOut : ecoreMMM!EClass = OclUndefined;
+
+helper context ecoreMMM!EPackage def: isRoot() : Boolean = 
+	if self.eSuperPackage.oclIsUndefined() then
+		true
+	else 
+		false
+	endif
+;
+
+rule findEPackagePathRic (package:ecoreMMM!EPackage){
+	do {
+			thisModule.ePackagePath <- thisModule.ePackagePath.prepend(package);
+			if (not package.eSuperPackage.oclIsUndefined()) {
+				thisModule.findEPackagePathRic(package.eSuperPackage);
+			}
+	}
+}
+
+rule findPackagePath (package:ecoreMMM!EPackage){
+	do {	
+		thisModule.ePackagePath <- Sequence{};
+		if (not package.eSuperPackage.oclIsUndefined()) {
+			thisModule.findEPackagePathRic(package.eSuperPackage);
+		}
+	}
+}
+
+rule findEClassPath (metaClass:ecoreMMM!EClass){
+	do {	
+		thisModule.ePackagePath <- Sequence{};
+		thisModule.findEPackagePathRic(metaClass.ePackage);
+	}
+}
+
+rule getEClassOut (metaClass:ecoreMMM!EClass){
+	using{
+		pt:ecoreMMM!EPackage = thisModule.RootEPackageMC;
+	}
+	do{
+		thisModule.findEClassPath(metaClass);
+		for (ps in thisModule.ePackagePath.excluding(thisModule.ePackagePath.first())) {
+
+			pt <- pt.eSubpackages->select(p | p.name = ps.name).first();
+		}
+
+		thisModule.eClassOut <- pt.eClassifiers->select(c | c.name = metaClass.name).first();	
+	}	
+}
+
+rule putPackageInPath(path_par : Sequence(ecoreMMM!EPackage), pack_par : ecoreMMM!EPackage){
+	using{
+		currentPack : ecoreMMM!EPackage = thisModule.RootEPackageMC;
+	}
+	do{
+		
+		for (p in path_par) {
+			currentPack <- currentPack.eSubpackages->select(e | e.name = p.name).first();
+		}
+		currentPack.eSubpackages <- currentPack.eSubpackages->append(pack_par);
+
+	}
+}
+
+rule putEClassInPath(path_par : Sequence(ecoreMMM!EPackage), eClass_par : ecoreMMM!EClass){
+	using{
+		currentPack : ecoreMMM!EPackage = thisModule.RootEPackageMC;
+	}
+	do{
+		
+		for (p in path_par) {
+			currentPack <- currentPack.eSubpackages->select(e | e.name = p.name).first();
+		}
+		currentPack.eClassifiers <- currentPack.eClassifiers->append(eClass_par);
+
+	}
+}
+
+rule createEOppositeEAnnotation (oppositeRef:ecoreMMM!EReference, currentRef:ecoreMMM!EReference){
+	to t : ecoreMMM!EAnnotation (
+		source <- 'eOpposite',
+		references <- Sequence{}->append(oppositeRef)
+	)
+	do{
+		currentRef.eAnnotations <- currentRef.eAnnotations.append(t);
+	}
+}
+
+entrypoint rule Metamodel() {
+	to me : 
+		-- MODELELEMENT METACLASS
+		ecoreMMM!EClass (
+			name <- 'ModelElement',
+			"abstract" <- true,
+			eReferences <- Sequence{}->append(refInc)->append(refExc)),
+		refInc:ecoreMMM!EReference (
+			name <- 'include',
+			eType <- me,
+			lowerBound <- 0,
+			upperBound <- -1),
+		refExc:ecoreMMM!EReference (
+			name <- 'exclude',
+			eType <- me,
+			lowerBound <- 0,
+			upperBound <- -1),
+		-- UDATA COMPONENTS
+		xort : ecoreMMM!EEnumLiteral (
+			literal <- 'XOR',
+			name <- 'XOR',
+			value <- 0
+		),
+		andt : ecoreMMM!EEnumLiteral (
+			literal <- 'AND',
+			name <- 'AND',
+			value <- 1
+		),
+		ort : ecoreMMM!EEnumLiteral (
+			literal <- 'OR',
+			name <- 'OR',
+			value <- 2
+		),
+		-- OPERATOR TYPE
+		ott : ecoreMMM!EEnum (
+			name <- 'OperatorType',
+			eLiterals <- Sequence{}->append(xort)->append(andt)->append(ort)
+		),
+		attr_utype : ecoreMMM!EAttribute (
+			name <- 'utype',
+			eType <- ott
+		),
+		attr_name : ecoreMMM!EAttribute (
+			name <- 'name',
+			eType <- thisModule.eStringType
+		),
+		-- UDATA METACLASS
+		udatat : ecoreMMM!EClass (
+			name <- 'UData',
+			"abstract" <- true,
+			eAttributes <- Sequence{}->append(attr_name)->append(attr_utype)
+		),
+		-- UNCERTAINTY PACKAGE
+		upack : ecoreMMM!EPackage (
+			name <- 'uncertainty',
+			nsPrefix <- 'uncertainty',
+			nsURI <- 'uncertainty',
+			eClassifiers <- Sequence{}->append(me)->append(udatat)->append(ott)
+		)
+	do {
+		thisModule.ModelElementMetaclass <- me;
+		thisModule.UncertaintyPackage <- upack;
+		thisModule.UDataMetaClass <- udatat;
+		
+		thisModule.debug('do:entrypoint');
+	}
+}
+
+rule RootEPackage {
+	from s : ecoreMMM!EPackage ((thisModule.inElements->includes(s)) and (s.isRoot()))
+	to t : ecoreMMM!EPackage (
+		name <- s.name,
+		nsURI <- s.nsURI,
+		nsPrefix <- s.nsPrefix,
+		eAnnotations <- s.eAnnotations,
+		eFactoryInstance <- s.eFactoryInstance,
+		eClassifiers <- s.eClassifiers,
+		
+		eSubpackages <- s.eSubpackages->append(thisModule.UncertaintyPackage))		
+		do{
+			thisModule.RootEPackageMC <- t;
+			thisModule.debug('do:RootEPackage');
+		}
+}
+
+
+rule OthersEPackages {
+	from s : ecoreMMM!EPackage ((thisModule.inElements->includes(s)) and (not s.isRoot()))
+	to 
+		t : ecoreMMM!EPackage (
+			name <- s.name,
+			nsURI <- s.nsURI,
+			nsPrefix <- s.nsPrefix,
+			eAnnotations <- s.eAnnotations,
+			eFactoryInstance <- s.eFactoryInstance,
+			eClassifiers <- s.eClassifiers,
+			eSubpackages <- s.eSubpackages
+		),
+		newPack : ecoreMMM!EPackage (
+			name <- s.name,
+			nsURI <- s.nsURI,
+			nsPrefix <- s.nsPrefix
+		)
+		do{
+			thisModule.debug('do:OthersEPackages');
+			
+			thisModule.findPackagePath(s);
+			thisModule.ePackagePath <- thisModule.ePackagePath->
+				excluding(thisModule.ePackagePath.first())->prepend(thisModule.UncertaintyPackage);
+			thisModule.putPackageInPath(thisModule.ePackagePath, newPack);
+			
+		}
+}
+
+-- CLASSES
+rule EClass2UEClass {
+	from s : ecoreMMM!EClass (thisModule.inElements->includes(s))
+	to t : ecoreMMM!EClass (
+		name <- s.name,
+		instanceClassName <- s.instanceClassName,
+		instanceTypeName <- s.instanceTypeName,
+		"abstract" <- s."abstract",
+		interface <- s.interface,
+		eAnnotations <- s.eAnnotations,
+		eTypeParameters <- s.eTypeParameters,
+		eSuperTypes <- s.eSuperTypes->append(thisModule.ModelElementMetaclass)->append(it),
+		eOperations <- s.eOperations,
+		eStructuralFeatures <- s.eStructuralFeatures,
+		eGenericSuperTypes <- s.eGenericSuperTypes
+	),
+	it : ecoreMMM!EClass (
+		name <- 'a'+s.name,
+		--interface <- true,
+		"abstract" <- true
+	),
+	ut : ecoreMMM!EClass (
+		name <- 'u'+s.name,
+  		eReferences <- Sequence{}->append(ref_l)->append(ref_r)->append(ref_self),
+		eSuperTypes <- Sequence{}->append(it)->append(thisModule.UDataMetaClass)
+	),
+	ref_l:ecoreMMM!EReference(
+		name <- 'uleft',
+		containment <- true,
+		lowerBound <- 0,
+		upperBound <- -1,
+		eType <- t
+	),
+	ref_r:ecoreMMM!EReference(
+		name <- 'uright',
+		containment <- true,
+		lowerBound <- 0,
+		upperBound <- -1,
+		eType <- t
+	),
+	ref_self:ecoreMMM!EReference(
+		name <- 'upoint',
+		containment <- true,
+		lowerBound <- 0,
+		upperBound <- -1,
+		eType <- ut
+	)
+	do{
+		thisModule.debug('do:EClass2UEClass');
+		t.debug('GenericSupertTypeProblem');
+		
+		thisModule.findEClassPath(s);
+		thisModule.ePackagePath <- thisModule.ePackagePath->
+			excluding(thisModule.ePackagePath.first())->prepend(thisModule.UncertaintyPackage);
+		thisModule.putEClassInPath(thisModule.ePackagePath, ut);
+		thisModule.putEClassInPath(thisModule.ePackagePath, it);
+		
+	}
+}
+
+rule EOperation {
+	from s : ecoreMMM!EOperation (thisModule.inElements->includes(s))
+ 	to t : ecoreMMM!EOperation (
+	 	eType<-s.eType,
+		eGenericType<-s.eGenericType,
+		name<-s.name,
+		eTypeParameters<-s.eTypeParameters
+ 	)
+	do{
+		thisModule.debug('do:EOperation');
+	}
+}
+
+-- REFERENCES
+-- The feature "allow inter-model references" bring a negative side effect:
+-- The statement "eType <- s.eType" assign to eType the EClassifier of the in M2 instead the EClassifier of the out M2
+-- This problem is resolved in "do block"
+
+rule EReference {
+
+	from s : ecoreMMM!EReference (thisModule.inElements->includes(s))
+	using{
+ 		emptyRef : ecoreMMM!EReference = OclUndefined;
+ 	}
+ 	to t : ecoreMMM!EReference (
+		name <- s.name,
+		ordered <- s.ordered,
+		unique <- s.unique,
+		lowerBound <- s.lowerBound,
+		upperBound <- s.upperBound,
+		changeable <- s.changeable,
+		volatile <- s.volatile,
+		transient <- s.transient,
+		defaultValueLiteral <- s.defaultValueLiteral,
+		unsettable <- s.unsettable,
+		"derived" <- s."derived",
+		containment <- s.containment,
+		resolveProxies <- s.resolveProxies,
+		eAnnotations <- s.eAnnotations,
+		eType <- s.eType,
+		eGenericType <- s.eGenericType,
+		eOpposite <- s.eOpposite,
+		eKeys <- s.eKeys
+	)
+	do{
+		thisModule.debug('do:EReference');
+		t.eOpposite.debug('t.eOpposite');
+		
+		-- opposite reference
+		if (not t.eOpposite.oclIsUndefined()){
+			thisModule.createEOppositeEAnnotation(t.eOpposite, t);
+		}
+		
+		-- manage reference in a correct way
+		if (thisModule.inElements.includes(t.eType)) {
+			
+			thisModule.getEClassOut(t.eType);
+			t.eType <- thisModule.eClassOut.eSuperTypes->select(e | e.name = 'a'+thisModule.eClassOut.name).first();
+
+		}
+		
+		t.refUnsetValue('eOpposite');
+
+	}
+}
+
+rule EAttribute {
+	from s : ecoreMMM!EAttribute (thisModule.inElements->includes(s))
+	to t : ecoreMMM!EAttribute (
+		 name <- s.name,
+		 ordered <- s.ordered,
+		 unique <- s.unique,
+		 lowerBound <- 0,
+		 upperBound <- s.upperBound,
+		 changeable <- s.changeable,
+		 volatile <- s.volatile,
+		 transient <- s.transient,
+		 defaultValueLiteral <- s.defaultValueLiteral,
+		 unsettable <- s.unsettable,
+		 "derived" <- s."derived",
+		 iD <- s.iD,
+		 eAnnotations <- s.eAnnotations,
+		 eType <- s.eType,
+		 eGenericType <- s.eGenericType)
+	do{
+		thisModule.debug('do:EAttribute');
+	}
+}
+
+rule EDataType {
+	from s : ecoreMMM!EDataType (
+		if thisModule.inElements->includes(s) then
+ 			s.oclIsTypeOf(ecoreMMM!EDataType)
+		else 
+			false 
+		endif)
+	to t : ecoreMMM!EDataType (
+		name <- s.name,
+		instanceClassName <- s.instanceClassName,
+		instanceTypeName <- s.instanceTypeName,
+		serializable <- s.serializable,
+		eAnnotations <- s.eAnnotations,
+		eTypeParameters <- s.eTypeParameters)
+	do{
+		thisModule.debug('do:EDataType');
+	}
+}
+  
+rule EEnum {
+	from s : ecoreMMM!EEnum (thisModule.inElements->includes(s))
+ 	to t : ecoreMMM!EEnum (
+		name <- s.name,
+		instanceClassName <- s.instanceClassName,
+		instanceTypeName <- s.instanceTypeName,
+		serializable <- s.serializable,
+		eAnnotations <- s.eAnnotations,
+		eTypeParameters <- s.eTypeParameters,
+		eLiterals <- s.eLiterals)
+	do{
+		thisModule.debug('do:EEnum');
+	}
+}
+
+--rule EEnumLiteral {
+--	from s : ecoreMMM!EEnumLiteral (thisModule.inElements->includes(s))
+--	to t : ecoreMMM!EEnumLiteral (
+--		name <- s.name,
+--		value <- s.value,
+--		instance <- s.instance,
+--		literal <- s.literal,
+--		eAnnotations <- s.eAnnotations)
+--	do{
+--		thisModule.debug('do:EEnumLiteral');
+--	}
+--}
+
+rule EAnnotation {
+	from s : ecoreMMM!EAnnotation (thisModule.inElements->includes(s))
+ 	to t : ecoreMMM!EAnnotation (
+		source <- s.source,
+		eAnnotations <- s.eAnnotations,
+		details <- s.details,
+		contents <- s.contents,
+		references <- s.references)
+	do{
+		thisModule.debug('do:EAnnotation');
+	}
+}
+

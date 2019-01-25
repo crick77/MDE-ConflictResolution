@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Univerity:University
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:Univerity="http://it.univaq.disim/university"
+    xsi:schemaLocation="http://it.univaq.disim/university ../../../it.univaq.disim.uncertainty.uuniversity/metamodel/UUniversity.ecore">
+  <Courses xsi:type="Univerity:Courses"
+      Name="Model Driven"
+      CFU="6">
+    <Professor
+        xsi:type="Univerity:Person"
+        Name="Alfonso Pierantonio"
+        Email="alfonso.pierantonio@univaq.it"/>
+    <Student
+        xsi:type="Univerity:Person"
+        Name="Ciavarro Cristina"
+        Email="cristina.ciavarro@student.univaq.it"/>
+  </Courses>
+</Univerity:University>

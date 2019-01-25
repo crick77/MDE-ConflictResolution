@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Families:FamilyRegistry
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:Families="http://it.univaq.disim/families"
+    xsi:schemaLocation="http://it.univaq.disim/families ../../../MDE.Project.ATL.ModelU/TEST/UFamilies.ecore">
+  <families
+      xsi:type="Families:Family"
+      lastName="PM"
+      address="St. Andrea">
+    <children
+        xsi:type="Families:Member"
+        firstName="k"
+        age="8"/>
+    <mother
+        xsi:type="Families:Member"
+        firstName="j"
+        age="42"
+        guardian="//@families.0"/>
+    <father
+        xsi:type="Families:Member"
+        firstName="d"
+        age="45"/>
+  </families>
+  <families
+      xsi:type="Families:Family"
+      lastName="NP">
+    <children
+        xsi:type="Families:Member"
+        firstName="_j1"
+        age="22"/>
+    <mother
+        xsi:type="Families:Member"
+        firstName="s"
+        age="45"/>
+    <father
+        xsi:type="Families:Member"
+        firstName="A"
+        age="50"
+        guardian="//@families.1"/>
+  </families>
+  <families
+      xsi:type="Families:Family"
+      lastName="bp"
+      address="LSeq"/>
+  <families
+      xsi:type="Families:Family"
+      lastName="A"
+      address="UFu"/>
+  <families
+      xsi:type="Families:Family"
+      lastName="yX"
+      address="qdjr"/>
+</Families:FamilyRegistry>

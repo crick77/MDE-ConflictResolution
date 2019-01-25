@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Families:FamilyRegistry xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Families="http://it.univaq.disim/families" xmlns:uncertainty="uncertainty">
+  <families xsi:type="Families:Family" lastName="NP">
+    <mother xsi:type="uncertainty:uMember">
+      <uleft firstName="_j1" age="22"/>
+      <uright firstName="_j1" age="47"/>
+    </mother>
+    <father xsi:type="Families:Member" firstName="_j1" age="51"/>
+  </families>
+  <families xsi:type="Families:Family" lastName="PM" address="St. Andrea">
+    <children xsi:type="Families:Member" firstName="_j" age="9"/>
+    <children xsi:type="uncertainty:uMember">
+      <uleft firstName="k" age="8"/>
+      <uright firstName="k" age="5"/>
+    </children>
+  </families>
+</Families:FamilyRegistry>
