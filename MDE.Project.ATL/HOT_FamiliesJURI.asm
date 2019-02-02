@@ -992,7 +992,6 @@
 		<constant value="285:3-292:4"/>
 		<constant value="__applyReferenceChangeAddMember2Member"/>
 		<constant value="guardian"/>
-		<constant value="J.getReferenceChangeAttribute(JJ):J"/>
 		<constant value="287:17-287:18"/>
 		<constant value="287:17-287:24"/>
 		<constant value="287:17-287:34"/>
@@ -1001,11 +1000,10 @@
 		<constant value="288:11-288:18"/>
 		<constant value="288:11-288:22"/>
 		<constant value="288:4-288:22"/>
-		<constant value="290:16-290:26"/>
-		<constant value="290:55-290:56"/>
-		<constant value="290:57-290:67"/>
-		<constant value="290:16-290:68"/>
-		<constant value="290:4-290:68"/>
+		<constant value="290:16-290:17"/>
+		<constant value="290:16-290:23"/>
+		<constant value="290:16-290:32"/>
+		<constant value="290:4-290:32"/>
 		<constant value="__matchReferenceChangeConflicting2Member"/>
 		<constant value="J.CheckReferenceChangeConflicting(JJ):J"/>
 		<constant value="299:34-299:44"/>
@@ -1014,6 +1012,7 @@
 		<constant value="299:34-299:98"/>
 		<constant value="301:3-308:4"/>
 		<constant value="__applyReferenceChangeConflicting2Member"/>
+		<constant value="J.getReferenceChangeAttribute(JJ):J"/>
 		<constant value="303:17-303:18"/>
 		<constant value="303:17-303:24"/>
 		<constant value="303:17-303:34"/>
@@ -4081,38 +4080,36 @@
 			<set arg="972"/>
 			<dup/>
 			<getasm/>
-			<getasm/>
 			<load arg="29"/>
-			<push arg="990"/>
-			<call arg="991"/>
+			<get arg="34"/>
+			<get arg="990"/>
 			<call arg="30"/>
 			<set arg="990"/>
 			<pop/>
 		</code>
 		<linenumbertable>
-			<lne id="992" begin="11" end="11"/>
-			<lne id="993" begin="11" end="12"/>
-			<lne id="994" begin="11" end="13"/>
-			<lne id="995" begin="9" end="15"/>
-			<lne id="996" begin="18" end="18"/>
-			<lne id="997" begin="18" end="19"/>
-			<lne id="998" begin="18" end="20"/>
-			<lne id="999" begin="16" end="22"/>
-			<lne id="1000" begin="25" end="25"/>
-			<lne id="1001" begin="26" end="26"/>
-			<lne id="1002" begin="27" end="27"/>
-			<lne id="1003" begin="25" end="28"/>
-			<lne id="1004" begin="23" end="30"/>
-			<lne id="988" begin="8" end="31"/>
+			<lne id="991" begin="11" end="11"/>
+			<lne id="992" begin="11" end="12"/>
+			<lne id="993" begin="11" end="13"/>
+			<lne id="994" begin="9" end="15"/>
+			<lne id="995" begin="18" end="18"/>
+			<lne id="996" begin="18" end="19"/>
+			<lne id="997" begin="18" end="20"/>
+			<lne id="998" begin="16" end="22"/>
+			<lne id="999" begin="25" end="25"/>
+			<lne id="1000" begin="25" end="26"/>
+			<lne id="1001" begin="25" end="27"/>
+			<lne id="1002" begin="23" end="29"/>
+			<lne id="988" begin="8" end="30"/>
 		</linenumbertable>
 		<localvariabletable>
-			<lve slot="3" name="370" begin="7" end="31"/>
-			<lve slot="2" name="291" begin="3" end="31"/>
-			<lve slot="0" name="17" begin="0" end="31"/>
-			<lve slot="1" name="906" begin="0" end="31"/>
+			<lve slot="3" name="370" begin="7" end="30"/>
+			<lve slot="2" name="291" begin="3" end="30"/>
+			<lve slot="0" name="17" begin="0" end="30"/>
+			<lve slot="1" name="906" begin="0" end="30"/>
 		</localvariabletable>
 	</operation>
-	<operation name="1005">
+	<operation name="1003">
 		<context type="6"/>
 		<parameters>
 		</parameters>
@@ -4129,7 +4126,7 @@
 			<push arg="909"/>
 			<push arg="855"/>
 			<findme/>
-			<call arg="1006"/>
+			<call arg="1004"/>
 			<call arg="68"/>
 			<if arg="857"/>
 			<getasm/>
@@ -4155,18 +4152,18 @@
 			<enditerate/>
 		</code>
 		<linenumbertable>
-			<lne id="1007" begin="7" end="7"/>
-			<lne id="1008" begin="8" end="8"/>
-			<lne id="1009" begin="9" end="11"/>
-			<lne id="1010" begin="7" end="12"/>
-			<lne id="1011" begin="27" end="32"/>
+			<lne id="1005" begin="7" end="7"/>
+			<lne id="1006" begin="8" end="8"/>
+			<lne id="1007" begin="9" end="11"/>
+			<lne id="1008" begin="7" end="12"/>
+			<lne id="1009" begin="27" end="32"/>
 		</linenumbertable>
 		<localvariabletable>
 			<lve slot="1" name="291" begin="6" end="34"/>
 			<lve slot="0" name="17" begin="0" end="35"/>
 		</localvariabletable>
 	</operation>
-	<operation name="1012">
+	<operation name="1010">
 		<context type="6"/>
 		<parameters>
 			<parameter name="19" type="870"/>
@@ -4200,26 +4197,26 @@
 			<getasm/>
 			<load arg="29"/>
 			<push arg="990"/>
-			<call arg="991"/>
+			<call arg="1011"/>
 			<call arg="30"/>
 			<set arg="990"/>
 			<pop/>
 		</code>
 		<linenumbertable>
-			<lne id="1013" begin="11" end="11"/>
-			<lne id="1014" begin="11" end="12"/>
-			<lne id="1015" begin="11" end="13"/>
-			<lne id="1016" begin="9" end="15"/>
-			<lne id="1017" begin="18" end="18"/>
-			<lne id="1018" begin="18" end="19"/>
-			<lne id="1019" begin="18" end="20"/>
-			<lne id="1020" begin="16" end="22"/>
-			<lne id="1021" begin="25" end="25"/>
-			<lne id="1022" begin="26" end="26"/>
-			<lne id="1023" begin="27" end="27"/>
-			<lne id="1024" begin="25" end="28"/>
-			<lne id="1025" begin="23" end="30"/>
-			<lne id="1011" begin="8" end="31"/>
+			<lne id="1012" begin="11" end="11"/>
+			<lne id="1013" begin="11" end="12"/>
+			<lne id="1014" begin="11" end="13"/>
+			<lne id="1015" begin="9" end="15"/>
+			<lne id="1016" begin="18" end="18"/>
+			<lne id="1017" begin="18" end="19"/>
+			<lne id="1018" begin="18" end="20"/>
+			<lne id="1019" begin="16" end="22"/>
+			<lne id="1020" begin="25" end="25"/>
+			<lne id="1021" begin="26" end="26"/>
+			<lne id="1022" begin="27" end="27"/>
+			<lne id="1023" begin="25" end="28"/>
+			<lne id="1024" begin="23" end="30"/>
+			<lne id="1009" begin="8" end="31"/>
 		</linenumbertable>
 		<localvariabletable>
 			<lve slot="3" name="77" begin="7" end="31"/>
@@ -4228,7 +4225,7 @@
 			<lve slot="1" name="906" begin="0" end="31"/>
 		</localvariabletable>
 	</operation>
-	<operation name="1026">
+	<operation name="1025">
 		<context type="6"/>
 		<parameters>
 		</parameters>
@@ -4242,7 +4239,7 @@
 			<store arg="19"/>
 			<getasm/>
 			<load arg="19"/>
-			<push arg="1027"/>
+			<push arg="1026"/>
 			<push arg="855"/>
 			<findme/>
 			<call arg="856"/>
@@ -4262,7 +4259,7 @@
 			<pcall arg="860"/>
 			<dup/>
 			<push arg="861"/>
-			<push arg="1027"/>
+			<push arg="1026"/>
 			<push arg="855"/>
 			<new/>
 			<pcall arg="862"/>
@@ -4271,18 +4268,18 @@
 			<enditerate/>
 		</code>
 		<linenumbertable>
-			<lne id="1028" begin="7" end="7"/>
-			<lne id="1029" begin="8" end="8"/>
-			<lne id="1030" begin="9" end="11"/>
-			<lne id="1031" begin="7" end="12"/>
-			<lne id="1032" begin="27" end="32"/>
+			<lne id="1027" begin="7" end="7"/>
+			<lne id="1028" begin="8" end="8"/>
+			<lne id="1029" begin="9" end="11"/>
+			<lne id="1030" begin="7" end="12"/>
+			<lne id="1031" begin="27" end="32"/>
 		</linenumbertable>
 		<localvariabletable>
 			<lve slot="1" name="346" begin="6" end="34"/>
 			<lve slot="0" name="17" begin="0" end="35"/>
 		</localvariabletable>
 	</operation>
-	<operation name="1033">
+	<operation name="1032">
 		<context type="6"/>
 		<parameters>
 			<parameter name="19" type="870"/>
@@ -4301,19 +4298,19 @@
 			<getasm/>
 			<getasm/>
 			<load arg="29"/>
-			<push arg="1034"/>
-			<call arg="1035"/>
+			<push arg="1033"/>
+			<call arg="1034"/>
 			<call arg="30"/>
-			<set arg="1034"/>
+			<set arg="1033"/>
 			<pop/>
 		</code>
 		<linenumbertable>
-			<lne id="1036" begin="11" end="11"/>
-			<lne id="1037" begin="12" end="12"/>
-			<lne id="1038" begin="13" end="13"/>
-			<lne id="1039" begin="11" end="14"/>
-			<lne id="1040" begin="9" end="16"/>
-			<lne id="1032" begin="8" end="17"/>
+			<lne id="1035" begin="11" end="11"/>
+			<lne id="1036" begin="12" end="12"/>
+			<lne id="1037" begin="13" end="13"/>
+			<lne id="1038" begin="11" end="14"/>
+			<lne id="1039" begin="9" end="16"/>
+			<lne id="1031" begin="8" end="17"/>
 		</linenumbertable>
 		<localvariabletable>
 			<lve slot="3" name="861" begin="7" end="17"/>

@@ -5,7 +5,9 @@
       <uleft firstName="_j1" age="22"/>
       <uright firstName="_j1" age="47"/>
     </mother>
-    <father xsi:type="Families:Member" firstName="_j1" age="51"/>
+    <father xsi:type="Families:Member" firstName="_j1" age="51">
+      <guardian xsi:type="Families:Family" href="../families/juri_model/FamilyRegistry_R.xmi#//@families.1"/>
+    </father>
   </families>
   <families xsi:type="Families:Family" lastName="PM" address="St. Andrea">
     <children xsi:type="Families:Member" firstName="_j" age="9"/>

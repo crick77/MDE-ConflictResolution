@@ -298,7 +298,7 @@ rule ReferenceChangeAdd[el.name/]2[el.name/] {
 			[/if]	
 		
 			[for (ref : EReference | el.eAllReferences)separator(',\n')] 
-			[ref.name/] <- thisModule.getReferenceChangeAttribute(r,'[ref.name/]')
+			[ref.name/] <- r.value.[ref.name/] --thisModule.getReferenceChangeAttribute(r,'[ref.name/]')
 			[/for]
 
 		)

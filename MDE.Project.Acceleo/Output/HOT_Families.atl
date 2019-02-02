@@ -289,7 +289,7 @@ rule ReferenceChangeAddMember2Member {
 			firstName <- r.value.firstName,
 			age <- r.value.age,
 		
-			relatives <- thisModule.getReferenceChangeAttribute(r,'relatives')
+			relatives <- r.value.relatives --thisModule.getReferenceChangeAttribute(r,'relatives')
 
 		)
 }
